@@ -1,4 +1,7 @@
 <?php
+ // error_reporting returns the old error code
+ $old_error_reporting = error_reporting(0);
+
 /**
  * PEAR, the PHP Extension and Application Repository
  *
@@ -1111,3 +1114,6 @@ class PEAR_Error
  * c-basic-offset: 4
  * End:
  */
+
+  // reset error_reporting to its old value
+  error_reporting($old_error_reporting);
