@@ -1,7 +1,4 @@
 <?php
- // error_reporting returns the old error code
- $old_error_reporting = error_reporting(0);
-
 /**
  * PEAR, the PHP Extension and Application Repository
  *
@@ -222,7 +219,7 @@ class PEAR
             );
         }
         return call_user_func_array(
-            array(get_class(), '_' . $method),
+            array(static::class, '_' . $method),
             array_merge(array($this), $arguments)
         );
     }
@@ -235,7 +232,7 @@ class PEAR
             );
         }
         return call_user_func_array(
-            array(get_class(), '_' . $method),
+            array(static::class, '_' . $method),
             array_merge(array(null), $arguments)
         );
     }
@@ -840,6 +837,7 @@ class PEAR_Error
     var $message              = '';
     var $userinfo             = '';
     var $backtrace            = null;
+    var $callback             = null;
 
     /**
      * PEAR_Error constructor
@@ -1114,6 +1112,3 @@ class PEAR_Error
  * c-basic-offset: 4
  * End:
  */
-
-  // reset error_reporting to its old value
-  error_reporting($old_error_reporting);

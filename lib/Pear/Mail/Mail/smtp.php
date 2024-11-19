@@ -178,6 +178,8 @@ class Mail_smtp extends Mail {
      */
     var $socket_options = array();
 
+    var $queued_as = null;
+    var $greeting = null;
     /**
      * Constructor.
      *
@@ -305,7 +307,7 @@ class Mail_smtp extends Mail {
                 $params .= ' ' . $key . (is_null($val) ? '' : '=' . $val);
             }
         }
-        if (PEAR::isError($res = $this->_smtp->mailFrom($from, ltrim($params)))) {
+        if (PEAR::isError($res = $this->_smtp->mailFrom($from, ltrim($params ?? '')))) {
             $error = $this->_error("Failed to set sender: $from", $res);
             $this->_smtp->rset();
             return PEAR::raiseError($error, PEAR_MAIL_SMTP_ERROR_SENDER);

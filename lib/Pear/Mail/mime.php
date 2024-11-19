@@ -899,7 +899,7 @@ class Mail_mime
         $attachments = count($this->parts) > 0;
         $html_images = count($this->html_images) > 0;
         $html        = strlen($this->htmlbody) > 0;
-        $calendar    = strlen($this->calbody) > 0;
+        $calendar    = strlen($this->calbody ?? '') > 0;
         $has_text    = strlen($this->txtbody) > 0;
         $text        = !$html && $has_text;
         $mixed_params = array('preamble' => $this->build_params['preamble']);
@@ -1372,7 +1372,7 @@ class Mail_mime
         $attachments = count($this->parts) > 0;
         $html_images = count($this->html_images) > 0;
         $html        = strlen($this->htmlbody) > 0;
-        $calendar    = strlen($this->calbody) > 0;
+        $calendar    = strlen($this->calbody ?? '') > 0;
         $has_text    = strlen($this->txtbody) > 0;
         $text        = !$html && $has_text;
         $headers     = array();
